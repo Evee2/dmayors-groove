@@ -5,15 +5,21 @@ function topFunction() {
 
 document.addEventListener("DOMContentLoaded", () => {
   const mybutton = document.getElementById("myBtn");
-  if (mybutton) {
-    window.addEventListener("scroll", () => {
-      if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-        mybutton.style.display = "flex";
-      } else {
-        mybutton.style.display = "none";
+  const pillTrack = document.querySelector(".pill-track");
+
+  let ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      if (mybutton) {
+        const scrolled = document.body.scrollTop > 400 || document.documentElement.scrollTop > 400;
+        mybutton.style.display = scrolled ? "flex" : "none";
       }
+      ticking = false;
     });
   }
+  window.addEventListener("scroll", onScroll, { passive: true });
 
   const sections = document.querySelectorAll(".category");
   const pills = document.querySelectorAll(".pill");
@@ -25,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
     pillById[id] = pill;
   });
 
+  function isPillFullyVisible(pill) {
+    if (!pillTrack) return true;
+    const trackRect = pillTrack.getBoundingClientRect();
+    const pillRect = pill.getBoundingClientRect();
+    return pillRect.left >= trackRect.left && pillRect.right <= trackRect.right;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -33,7 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!pill) return;
           pills.forEach((p) => p.classList.remove("active"));
           pill.classList.add("active");
-          pill.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+          if (!isPillFullyVisible(pill)) {
+            pill.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+          }
         }
       });
     },

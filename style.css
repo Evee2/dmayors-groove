@@ -64,8 +64,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(14, 12, 11, 0.94);
-  backdrop-filter: blur(10px);
+  background: var(--black-soft);
   border-bottom: 1px solid var(--hairline);
   padding: 12px 0;
 }
@@ -186,8 +185,11 @@ main {
   color: var(--black);
   cursor: pointer;
   display: none;
+  align-items: center;
+  justify-content: center;
   z-index: 18;
   font-size: 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 footer {
