@@ -73,8 +73,17 @@ a {
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  max-width: 920px;
+  margin: 0 auto;
   padding: 0 20px;
   scrollbar-width: thin;
+}
+
+@media (min-width: 700px) {
+  .pill-track {
+    justify-content: center;
+    justify-content: safe center;
+  }
 }
 
 .pill-track::-webkit-scrollbar {
