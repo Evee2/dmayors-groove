@@ -288,6 +288,14 @@ footer {
   color: var(--gold);
 }
 
+@media (min-width: 960px) {
+  #myBtn {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 640px) {
   .wordmark {
     font-size: 2.4rem;
