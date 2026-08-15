@@ -194,17 +194,24 @@ main {
   bottom: 20px;
   width: 48px;
   height: 48px;
+  padding: 0;
   border: 0;
   border-radius: 50%;
   background: var(--gold);
   color: var(--black);
   cursor: pointer;
   display: none;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   z-index: 18;
   font-size: 1rem;
+  line-height: 1;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+#myBtn i {
+  display: block;
+  margin: 0;
+  line-height: 1;
 }
 
 footer {

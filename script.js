@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(() => {
       if (mybutton) {
         const scrolled = document.body.scrollTop > 400 || document.documentElement.scrollTop > 400;
-        mybutton.style.display = scrolled ? "flex" : "none";
+        mybutton.style.display = scrolled ? "grid" : "none";
       }
       ticking = false;
     });
